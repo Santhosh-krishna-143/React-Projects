@@ -1,0 +1,23 @@
+.homeDiv {
+  .homeHead {
+    color: black;
+    text-decoration: underline;
+  }
+  .mainBtnDiv {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .btnDiv {
+      flex: 0 0 31%;
+      margin: 1%;
+      button {
+        background-color: black;
+        border: 1px solid white;
+        color: white;
+      }
+      button:hover {
+        background-color: darkgray;
+      }
+    }
+  }
+}
