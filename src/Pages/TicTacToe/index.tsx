@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import CustButton from "../../Components/Button";
 
-const TicTacToe = () => {
-  const [cell, setCell] = useState(Array(9).fill(""));
+type XOXTypes = {
+  multiplesOf?: number;
+};
+
+const TicTacToe = (props: XOXTypes) => {
+  const { multiplesOf } = { ...props };
+  const [cell, setCell] = useState(
+    Array(multiplesOf ? multiplesOf * multiplesOf : 9).fill("")
+  );
   const [currentPlayer, setCurrentPlayer] = useState("X");
   const [winner, setWinner] = useState("");
   const [currInd, setCurrInd] = useState(0);
@@ -29,7 +36,7 @@ const TicTacToe = () => {
   };
 
   const resetBtn = () => {
-    setCell(Array(9).fill(""));
+    setCell(Array(multiplesOf ? multiplesOf * multiplesOf : 9).fill(""));
     setCurrentPlayer("X");
     setWinner("");
   };
@@ -84,7 +91,12 @@ const TicTacToe = () => {
         <h3>{winner.includes("Drawn") ? winner : `${winner} wins`}</h3>
       ) : null}
       <CustButton btntxt="Reset" onClick={resetBtn} />
-      <div className={styles.mainGameBox}>
+      <div
+        className={styles.mainGameBox}
+        style={{
+          gridTemplateColumns: `repeat(${Math.sqrt(cell.length)}, 100px)`,
+        }}
+      >
         {cell.map((box: string, i: number) => (
           <div key={i} className={styles.cellBox} onClick={() => addValues(i)}>
             {box}

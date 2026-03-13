@@ -31,7 +31,7 @@ const PROJECT_ROUTES: RouteObject[] = [
       },
       {
         path: XOX_PATH,
-        element: <TicTacToe />,
+        element: <TicTacToe multiplesOf={3} />,
       },
       {
         path: TODO_PATH,
